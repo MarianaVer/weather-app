@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+   <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card" style="width: 50rem">
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-5 m-2">
+                <input
+                  type="text"
+                  class="form-control shadow-sm"
+                  id="enterCity"
+                  placeholder="Enter your city"
+                  autofocus="on"
+                />
+              </div>
+              <div class="col m-2">
+                <button
+                  type="submit"
+                  class="btn btn-primary shadow-sm"
+                  id="button-search"
+                >
+                  Search
+                </button>
+              </div>
+              <div class="col m-2">
+                <button
+                  type="submit"
+                  class="btn btn-light shadow-sm"
+                  id="current-location"
+                >
+                  Current location
+                </button>
+              </div>
+            </div>
+          </form>
+          <main>
+            <p class="city-name" id="city-name"></p>
+            <div class="row">
+              <div class="col-7">
+                <p class="date" id="date"></p>
+                <p class="weather" id="description"></p>
+                <p class="humidity">Humidity: <span id="humidity"></span>%</p>
+                <p class="wind">Wind: <span id="wind"></span> km/h</p>
+              </div>
+              <div class="col-5">
+                <p class="temperature">
+                  <span class="degree-main" id="degree-main"></span
+                  ><span class="sup"
+                    ><a href="#" id="celsius">°C</a> |
+                    <a href="#" id="fahrenheit">°F</a></span
+                  >
+                  <span class="rain">🌧</span>
+                </p>
+              </div>
+            </div>
+          </main>
+          <section class="forecast">
+            <div class="row">
+              <div class="col">
+                <p class="week-day text-center">Tue</p>
+                <p class="degree text-center">
+                  19°/10° <br /><span class="weather-emoji">🌤</span>
+                </p>
+              </div>
+              <div class="col">
+                <p class="week-day text-center">Wed</p>
+                <p class="degree text-center">
+                  17°/9°<br /><span class="weather-emoji">☀️</span>
+                </p>
+              </div>
+              <div class="col">
+                <p class="week-day text-center">Thu</p>
+                <p class="degree text-center">
+                  10°/8°<br /><span class="weather-emoji">💨</span>
+                </p>
+              </div>
+              <div class="col">
+                <p class="week-day text-center">Fri</p>
+                <p class="degree text-center">
+                  11°/7°<br /><span class="weather-emoji">⛈</span>
+                </p>
+              </div>
+              <div class="col">
+                <p class="week-day text-center">Sat</p>
+                <p class="degree text-center">
+                  13°/6°<br /><span class="weather-emoji">⚡️</span>
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
