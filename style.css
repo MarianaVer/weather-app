@@ -12,6 +12,12 @@ a {
   text-decoration: none;
 }
 
+footer p {
+  font-size: 15px;
+  color: grey;
+  margin: 20px 200px;
+}
+
 .city-name {
   font-weight: 600;
 }
