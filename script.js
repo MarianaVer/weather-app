@@ -1,4 +1,14 @@
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
   let days = [
     "Sunday",
     "Monday",
@@ -24,22 +34,12 @@ function formatDate(date) {
     "December",
   ];
 
-  let currentYear = date.getFullYear();
-  let currentDay = days[date.getDay()];
-  let currentMonth = months[date.getMonth()];
+  let day = days[date.getDay()];
+  let year = date.getFullYear();
+  let month = months[date.getMonth()];
   let currentDate = date.getDate();
-  let currentHour = date.getHours();
-  if (currentHour < 10) {
-    currentHour = `0${currentHour}`;
-  }
-  let currentMinutes = date.getMinutes();
-  if (currentMinutes < 10) {
-    currentMinutes = `0${currentMinutes}`;
-  }
-
-  let formattedDate = `${currentDay}, ${currentMonth} ${currentDate}, ${currentYear}, ${currentHour}:${currentMinutes}`;
-
-  return formattedDate;
+  
+  return `${day}, ${month} ${currentDate}, ${year}, ${hours}:${minutes}`;
 }
 
 function showTemperature(response) {
@@ -48,6 +48,7 @@ function showTemperature(response) {
     document.querySelector('#humidity').innerHTML = response.data.main.humidity;
     document.querySelector('#wind').innerHTML = Math.round(response.data.wind.speed);
     document.querySelector('#description').innerHTML = response.data.weather[0].main;
+    document.querySelector("#date").innerHTML = formatDate(response.data.dt * 1000);
   }
 
 function searchCity(city) {
@@ -89,20 +90,12 @@ function showCelsius(event) {
   celsius.style.color = "black";
 }
 
-
-// Feature #1
-let now = new Date();
-let currentTime = document.querySelector("#date");
-currentTime.innerHTML = formatDate(now);
-
-// Feature #2
 let buttonSearch = document.querySelector("#button-search");
 buttonSearch.addEventListener("click", showCity);
 
 let currentLocationButton = document.querySelector('#current-location');
 currentLocationButton.addEventListener('click', getCurrentLocation);
 
-// Feature #3
 let degreeFahrenheit = document.querySelector("#fahrenheit");
 let degreeCelsius = document.querySelector("#degree-main");
 let celsius = document.querySelector("#celsius");
