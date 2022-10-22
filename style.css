@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 footer p {
   font-size: 12px;
   color: grey;
@@ -40,6 +44,16 @@ footer p {
   margin: 10px;
   font-size: 70px;
   font-weight: 500;
+}
+
+.active {
+  color: black;
+  cursor: default;
+}
+
+.active:hover {
+  color: black;
+  text-decoration: none;
 }
 
 .sup {

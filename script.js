@@ -44,9 +44,8 @@ function formatDate(timestamp) {
 
 function showTemperature(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
-  document.querySelector("#degree-main").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  celsiusTemperature = Math.round(response.data.main.temp);
+  degreeCelsius.innerHTML = celsiusTemperature;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
@@ -90,16 +89,16 @@ function getCurrentLocation(event) {
 
 function showFarenheit(event) {
   event.preventDefault();
-  degreeCelsius.innerHTML = "66";
-  degreeFahrenheit.style.color = "black";
-  celsius.style.color = "blue";
+  degreeCelsius.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
+  celsius.classList.remove("active");
+  degreeFahrenheit.classList.add("active");
 }
 
 function showCelsius(event) {
   event.preventDefault();
-  degreeCelsius.innerHTML = "18";
-  degreeFahrenheit.style.color = "blue";
-  celsius.style.color = "black";
+  degreeCelsius.innerHTML = celsiusTemperature;
+  degreeFahrenheit.classList.remove("active");
+  celsius.classList.add("active");
 }
 
 let buttonSearch = document.querySelector("#button-search");
@@ -111,6 +110,7 @@ currentLocationButton.addEventListener("click", getCurrentLocation);
 let degreeFahrenheit = document.querySelector("#fahrenheit");
 let degreeCelsius = document.querySelector("#degree-main");
 let celsius = document.querySelector("#celsius");
+let celsiusTemperature = null;
 degreeFahrenheit.addEventListener("click", showFarenheit);
 celsius.addEventListener("click", showCelsius);
 
