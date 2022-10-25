@@ -12,9 +12,13 @@ p.date {
   font-size: 15px;
 }
 
-img {
+img.icon {
   position: relative;
   left: -90px;
+}
+
+img.weather-emoji {
+  margin: -15px 13px;
 }
 
 a {
@@ -69,7 +73,7 @@ footer p {
   margin: 50px 0 0;
 }
 
-.forecast .col {
+.forecast .col-2 {
   opacity: 0.6;
 }
 
@@ -77,14 +81,7 @@ footer p {
   font-weight: 600;
 }
 
-.weather-emoji {
-  font-size: 40px;
-}
-
-.forecast .col:hover {
+.forecast .col-2:hover {
   cursor: pointer;
-}
-
-.forecast .col:hover {
   opacity: 1;
 }
