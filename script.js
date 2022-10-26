@@ -42,6 +42,34 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${currentDate}, ${year}, ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecast = document.querySelector("#forecast");
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+          <p class="week-day text-center">${day}</p>
+          <p class="degree text-center">
+              <span class="forecast-temperature-max">19°</span>/<span
+              class="forecast-temperature-min"
+              >10°</span
+                >
+          </p>
+          <img
+            src="http://openweathermap.org/img/wn/50d@2x.png"
+            alt=""
+            width="80"
+            class="weather-emoji"
+          />
+      </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecast.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
   celsiusTemperature = Math.round(response.data.main.temp);
@@ -115,3 +143,4 @@ degreeFahrenheit.addEventListener("click", showFarenheit);
 celsius.addEventListener("click", showCelsius);
 
 searchCity("Kiev");
+displayForecast();
