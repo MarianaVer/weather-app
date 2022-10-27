@@ -42,7 +42,8 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${currentDate}, ${year}, ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecast = document.querySelector("#forecast");
   let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
   let forecastHTML = `<div class="row">`;
@@ -70,6 +71,13 @@ function displayForecast() {
   forecast.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "cc673ao9215bc9ad04adbb65d30tffbe";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showTemperature(response) {
   document.querySelector("#city-name").innerHTML = response.data.name;
   celsiusTemperature = Math.round(response.data.main.temp);
@@ -90,6 +98,8 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -143,4 +153,3 @@ degreeFahrenheit.addEventListener("click", showFarenheit);
 celsius.addEventListener("click", showCelsius);
 
 searchCity("Kiev");
-displayForecast();
