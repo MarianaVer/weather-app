@@ -42,30 +42,42 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${currentDate}, ${year}, ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecastDays = response.data.daily;
+  console.log(forecastDays);
   let forecast = document.querySelector("#forecast");
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
+
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecastDays.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 7) {
+      forecastHTML += `
       <div class="col-2">
-          <p class="week-day text-center">${day}</p>
+          <p class="week-day text-center">${formatDay(forecastDay.time)}</p>
           <p class="degree text-center">
-              <span class="forecast-temperature-max">19°</span>/<span
+              <span class="forecast-temperature-max">${Math.round(
+                forecastDay.temperature.maximum
+              )}°</span>/<span
               class="forecast-temperature-min"
-              >10°</span
+              >${Math.round(forecastDay.temperature.minimum)}°</span
                 >
           </p>
           <img
-            src="http://openweathermap.org/img/wn/50d@2x.png"
-            alt=""
+            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+              forecastDay.condition.icon
+            }.png"
+            alt="${forecastDay.condition.icon}"
             width="80"
             class="weather-emoji"
           />
       </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecast.innerHTML = forecastHTML;
